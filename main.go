@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fiberapi/routes"
+
 	"github.com/gofiber/cors"
 	"github.com/gofiber/fiber"
 	"github.com/gofiber/logger"
@@ -26,11 +28,9 @@ func main() {
 	app.Get("/greetings", func(c *fiber.Ctx) {
 		c.Send("Welcome!")
 	})
-
 	v1 := app.Group("/v1")
-	v1.Get("/user/*", func(c *fiber.Ctx) {
-		c.Send("API path: " + c.Params("*"))
-	})
+	routes.Register(app, v1)
+
 	app.Use(func(c *fiber.Ctx) {
 		c.SendStatus(404) // => 404 "Not Found"
 		c.Send("This is a dummy route")
