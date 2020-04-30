@@ -1,11 +1,13 @@
 package main
 
 import (
+	"fiberapi/database"
 	"fiberapi/routes"
 
 	"github.com/gofiber/cors"
 	"github.com/gofiber/fiber"
 	"github.com/gofiber/logger"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 func main() {
@@ -15,7 +17,7 @@ func main() {
 	app.Settings.CaseSensitive = true
 	app.Settings.StrictRouting = true
 	app.Settings.ServerHeader = "Fiberabid"
-
+	database.Connect()
 	app.Static("/static", "./public", fiber.Static{
 		Compress:  true,
 		ByteRange: true,
@@ -24,12 +26,14 @@ func main() {
 	})
 	app.Use(cors.New())
 	app.Use(logger.New())
-
 	app.Get("/greetings", func(c *fiber.Ctx) {
 		c.Send("Welcome!")
 	})
-	v1 := app.Group("/v1")
-	routes.Register(app, v1)
+	app.Get("/", func(c *fiber.Ctx) {
+
+		c.Send()
+	})
+	routes.Register(app)
 
 	app.Use(func(c *fiber.Ctx) {
 		c.SendStatus(404) // => 404 "Not Found"
