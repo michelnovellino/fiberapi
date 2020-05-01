@@ -8,7 +8,7 @@ import (
 	"github.com/gofiber/fiber"
 )
 
-// GetAll controller
+// GetAll handler
 func GetAll(c *fiber.Ctx) {
 	db := database.Instance()
 	db.LogMode(true)
@@ -19,6 +19,13 @@ func GetAll(c *fiber.Ctx) {
 	}
 	db.Close()
 	c.Send("success!")
+}
+
+//Get handler
+func Get(c *fiber.Ctx) {
+
+	res := c.Params("id")
+	c.Send(res)
 }
 
 // Post handler
@@ -36,11 +43,19 @@ func Post(c *fiber.Ctx) {
 }
 
 // Put handler
-func Put() {
+func Put(c *fiber.Ctx) {
+	res := c.Params("id")
+	test := new(models.Test)
+	if err := c.BodyParser(test); err != nil {
+		log.Fatal(err)
+	}
 
+	log.Println(test.Name)
+	c.Send(res)
 }
 
 // Delete handler
-func Delete() {
-
+func Delete(c *fiber.Ctx) {
+	res := c.Params("id")
+	c.Send(res)
 }
