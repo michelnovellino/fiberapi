@@ -29,6 +29,7 @@ func Connect() {
 	}
 
 	// db.AutoMigrate(&models.User{})
+	//db.AutoMigrate(&models.Test{})
 }
 
 //Instance ...
