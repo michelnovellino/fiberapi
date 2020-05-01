@@ -25,6 +25,7 @@ func GetAll(c *fiber.Ctx) {
 func Get(c *fiber.Ctx) {
 
 	res := c.Params("id")
+
 	c.Send(res)
 }
 
@@ -44,14 +45,23 @@ func Post(c *fiber.Ctx) {
 
 // Put handler
 func Put(c *fiber.Ctx) {
-	res := c.Params("id")
+	id := c.Params("id")
 	test := new(models.Test)
+
 	if err := c.BodyParser(test); err != nil {
 		log.Fatal(err)
 	}
-
 	log.Println(test.Name)
-	c.Send(res)
+	newName := test.Name
+	db := database.Instance()
+
+	db.First(&test, id) // find test with id
+	test.Name = newName
+	log.Println(test.Name)
+
+	db.Save(&test)
+
+	c.Send("updated test with id:" + id)
 }
 
 // Delete handler
