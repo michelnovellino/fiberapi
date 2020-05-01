@@ -33,7 +33,7 @@ func main() {
 
 		c.Send()
 	})
-	routes.Register(app)
+	routes.TestRoutes(app)
 
 	app.Use(func(c *fiber.Ctx) {
 		c.SendStatus(404) // => 404 "Not Found"

@@ -7,5 +7,5 @@ import (
 // Test Inject fields `ID`, `CreatedAt`, `UpdatedAt`, `DeletedAt` into model`
 type Test struct {
 	gorm.Model
-	Name string
+	Name string `json:"name" xml:"name" form:"name" query:"name"`
 }
