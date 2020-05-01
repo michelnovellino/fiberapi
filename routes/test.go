@@ -8,7 +8,7 @@ import (
 
 //TestRoutes register
 func TestRoutes(app *fiber.App) {
-	namespace := app.Group("/users")
+	namespace := app.Group("/test")
 	namespace.Get("/", controllers.GetAll)
 	namespace.Get("/:id", controllers.Get)
 	namespace.Post("/", controllers.Post)
