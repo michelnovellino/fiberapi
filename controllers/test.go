@@ -8,8 +8,8 @@ import (
 	"github.com/gofiber/fiber"
 )
 
-// GetAll handler
-func GetAll(c *fiber.Ctx) {
+// GetAllTest handler
+func GetAllTest(c *fiber.Ctx) {
 	db := database.Instance()
 	db.LogMode(true)
 	var test []models.Test
@@ -22,8 +22,8 @@ func GetAll(c *fiber.Ctx) {
 	db.Close()
 }
 
-//Get handler
-func Get(c *fiber.Ctx) {
+//GetTesthandler
+func GetTest(c *fiber.Ctx) {
 	db := database.Instance()
 	db.LogMode(true)
 	test := new(models.Test)
@@ -34,8 +34,8 @@ func Get(c *fiber.Ctx) {
 	c.JSON(test)
 }
 
-// Post handler
-func Post(c *fiber.Ctx) {
+// AddTest handler
+func AddTest(c *fiber.Ctx) {
 	db := database.Instance()
 	db.LogMode(true)
 	test := new(models.Test)
@@ -51,8 +51,8 @@ func Post(c *fiber.Ctx) {
 	c.Send(test.Name)
 }
 
-// Put handler
-func Put(c *fiber.Ctx) {
+// EditTest handler
+func EditTest(c *fiber.Ctx) {
 	id := c.Params("id")
 	test := new(models.Test)
 
@@ -72,8 +72,8 @@ func Put(c *fiber.Ctx) {
 	c.Send("updated test with id: " + id)
 }
 
-// Delete handler
-func Delete(c *fiber.Ctx) {
+// RemoveTest handler
+func RemoveTest(c *fiber.Ctx) {
 	id := c.Params("id")
 	db := database.Instance()
 

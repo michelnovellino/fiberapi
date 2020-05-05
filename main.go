@@ -26,18 +26,18 @@ func main() {
 	})
 	app.Use(cors.New())
 	app.Use(logger.New())
-	app.Get("/greetings", func(c *fiber.Ctx) {
-		c.Send("Welcome!")
-	})
+
 	app.Get("/", func(c *fiber.Ctx) {
 
-		c.Send()
+		c.Send("Hola, Mundo!")
 	})
+
 	routes.TestRoutes(app)
+	routes.UserRoutes(app)
 
 	app.Use(func(c *fiber.Ctx) {
 		c.SendStatus(404) // => 404 "Not Found"
-		c.Send("This is a dummy route")
+		c.Send("Not Found")
 	})
 	app.Listen(3000)
 }

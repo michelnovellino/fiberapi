@@ -9,11 +9,11 @@ import (
 //TestRoutes register
 func TestRoutes(app *fiber.App) {
 	namespace := app.Group("/test")
-	namespace.Get("/", controllers.GetAll)
-	namespace.Get("/:id", controllers.Get)
-	namespace.Post("/", controllers.Post)
-	namespace.Put("/:id", controllers.Put)
-	namespace.Delete("/:id", controllers.Delete)
+	namespace.Get("/", controllers.GetAllTest)
+	namespace.Get("/:id", controllers.GetTest)
+	namespace.Post("/", controllers.AddTest)
+	namespace.Put("/:id", controllers.EditTest)
+	namespace.Delete("/:id", controllers.RemoveTest)
 	namespace.Get("/admin/*", func(c *fiber.Ctx) {
 		c.Send("API path: " + c.Params("*"))
 	})
