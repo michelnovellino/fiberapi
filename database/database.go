@@ -1,6 +1,7 @@
 package database
 
 import (
+	"fiberapi/models"
 	"fmt"
 	"log"
 	"os"
@@ -28,8 +29,8 @@ func Connect() {
 		fmt.Println(err)
 	}
 
-	// db.AutoMigrate(&models.User{})
-	//db.AutoMigrate(&models.Test{})
+	db.AutoMigrate(&models.User{})
+	db.AutoMigrate(&models.Test{})
 }
 
 //Instance ...
