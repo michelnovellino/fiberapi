@@ -30,7 +30,7 @@ func Connect() {
 	}
 	db.AutoMigrate(&models.Role{})
 	db.AutoMigrate(&models.User{})
-	db.Model(&models.User{}).AddForeignKey("role_id", "roles(id)", "RESTRICT", "RESTRICT")
+	db.Model(&models.User{}).AddForeignKey("role_id", "roles(id)", "RESTRICT", "CASCADE")
 
 	db.AutoMigrate(&models.Test{})
 

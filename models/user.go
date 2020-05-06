@@ -13,6 +13,6 @@ type User struct {
 	LastName  string
 	birthDay  *time.Time
 	Email     string
-	RoleID    uint `gorm:"column:role_id" json:"-"`
-	Es        string
+	RoleID    uint `gorm:"column:role_id" json:"role_id"`
+	Role      Role
 }

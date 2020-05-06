@@ -7,6 +7,6 @@ import (
 // Role Inject fields `ID`, `CreatedAt`, `UpdatedAt`, `DeletedAt` into model`
 type Role struct {
 	gorm.Model
-	Name        string `json:"name" xml:"name" form:"name" query:"name"`
+	Name        string `gorm:"unique;not null" json:"name" xml:"name" form:"name" query:"name"`
 	Description string `json:"description" gorm:"type:varchar(100);" `
 }

@@ -42,6 +42,7 @@ func AddUser(c *fiber.Ctx) {
 	if err := c.BodyParser(User); err != nil {
 		log.Fatal(err)
 	}
+
 	if res := db.Create(&User); res.Error != nil {
 		log.Fatal("have error ", res.Error)
 	}
