@@ -28,9 +28,12 @@ func Connect() {
 	if err != nil {
 		fmt.Println(err)
 	}
-
+	db.AutoMigrate(&models.Role{})
 	db.AutoMigrate(&models.User{})
+	db.Model(&models.User{}).AddForeignKey("role_id", "roles(id)", "RESTRICT", "RESTRICT")
+
 	db.AutoMigrate(&models.Test{})
+
 }
 
 //Instance ...

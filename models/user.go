@@ -12,5 +12,7 @@ type User struct {
 	FirstName string `json:"first_name" xml:"first_name" form:"first_name" query:"first_name"`
 	LastName  string
 	birthDay  *time.Time
-	Email     string `gorm:"type:varchar(100);unique_index"`
+	Email     string
+	RoleID    uint `gorm:"column:role_id" json:"-"`
+	Es        string
 }
