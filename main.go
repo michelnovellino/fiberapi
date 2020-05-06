@@ -33,6 +33,7 @@ func main() {
 	})
 
 	routes.TestRoutes(app)
+	routes.RoleRoutes(app)
 	routes.UserRoutes(app)
 
 	app.Use(func(c *fiber.Ctx) {
