@@ -8,6 +8,29 @@ import (
 	"github.com/gofiber/fiber"
 )
 
+// RegisterUser handler, for new users 
+func RegisterUser(c *fiber.Ctx) {
+	db := database.Instance()
+	db.LogMode(true)
+	User := new(models.User)
+	if err := c.BodyParser(User); err != nil {
+		log.Fatal(err)
+	}
+	func (u *User) BeforeSave() (err error) {
+		if !u.IsValid() {
+		  err = errors.New("can't save invalid data")
+		}
+		return
+	  }
+	if res := db.Create(&User); res.Error != nil {
+		log.Fatal("have error ", res.Error)
+	}
+	
+ 	db.Close()
+	c.Send(User.FirstName)
+}
+
+
 // GetAllUsers handler
 func GetAllUsers(c *fiber.Ctx) {
 	db := database.Instance()
